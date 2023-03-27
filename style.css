@@ -128,3 +128,48 @@ body {
 .p-relativ {
     position: relative;
 }
+
+@media(max-width: 450px) {
+    body {
+        max-width: 300px;
+        overflow: hidden;
+    }
+
+    .player-panel {
+        flex-direction: column;
+    }
+
+    .shape {
+        width: 50px;
+        height: 50px;
+    }
+
+    .responsiv-line-left {
+        position:absolute;
+        left: -125px;
+    }
+
+    .responsiv-line-mid {
+        position:absolute;
+        margin-left: -50px;
+    }
+
+    .responsiv-line-right {
+        position: absolute;
+        margin-left: -95px;
+    }
+
+    .responsiv-line-left-d {
+        position: absolute;
+        left: -35px;
+    }
+
+    .responsiv-line-right-d {
+        position: absolute;
+        left: -15px;
+    }
+
+    .restart-button {
+        width: 250px!important;
+    }
+}
