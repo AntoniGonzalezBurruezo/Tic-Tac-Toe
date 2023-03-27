@@ -34,49 +34,65 @@ function draw() {
 function checkForWin() {
     let winner;
 
+    checkWinnerHorizontal(winner);
+    checkWinnerVertical(winner);
+    checkWinnerDiagonal(winner);
+}
+
+function checkWinnerHorizontal(winner) {
+    
     if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
         winner = fields[0];
         document.getElementById('line-1').style.transform = 'scaleX(1.2)';
+        restartPopUp(winner);
     }
-
     if (fields[3] == fields[4] && fields[4] == fields[5] && fields[3]) {
         winner = fields[3];
         document.getElementById('line-2').style.transform = 'scaleX(1.2)';
+        restartPopUp(winner);
     }
-
     if (fields[6] == fields[7] && fields[7] == fields[8] && fields[6]) {
         winner = fields[6];
         document.getElementById('line-3').style.transform = 'scaleX(1.2)';
+        restartPopUp(winner);
     }
+}
 
+function checkWinnerVertical(winner) {
     if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
         winner = fields[0];
         document.getElementById('line-4').style.transform = 'rotate(90deg) scaleX(1.2)';
+        restartPopUp(winner);
     }
-
     if (fields[1] == fields[4] && fields[4] == fields[7] && fields[1]) {
         winner = fields[1];
         document.getElementById('line-5').style.transform = 'rotate(90deg) scaleX(1.2)';
+        restartPopUp(winner);
     }
-
     if (fields[2] == fields[5] && fields[5] == fields[8] && fields[2]) {
         winner = fields[2];
         document.getElementById('line-6').style.transform = 'rotate(90deg) scaleX(1.2)';
+        restartPopUp(winner);
     }
+}
 
+function checkWinnerDiagonal(winner) {
     if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
         winner = fields[0];
         document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1.2)';
+        restartPopUp(winner);
     }
-
     if (fields[2] == fields[4] && fields[4] == fields[6] && fields[2]) {
         winner = fields[2];
         document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1.2)';
+        restartPopUp(winner);
     }
+}
 
+function restartPopUp(winner) {
     if (winner) {
         gameOver = true;
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('game-over').classList.remove('d-none');
             document.getElementById('restart-button').classList.remove('d-none');
         }, 1000);
@@ -90,20 +106,20 @@ function restart() {
     document.getElementById('game-over').classList.add('d-none');
     document.getElementById('restart-button').classList.add('d-none');
 
-    for(let i=1; i < 4; i++) {
-        document.getElementById('line-' + i).style.transform = 'scaleX(0.0)';
-    }
-
-    for(let i=4; i < 7; i++) {
-        document.getElementById('line-' + i).style.transform = 'rotate(90deg) scaleX(0.0)';
-    }
-
-    document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(0.0)';
-    document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(0.0)';
-    
-
-    for(let i=0; i < 9; i++) {
+    for (let i = 0; i < 9; i++) {
         document.getElementById('cross-' + i).classList.add('d-none');
         document.getElementById('circle-' + i).classList.add('d-none');
     }
+    transformLine();
+}
+
+function transformLine() {
+    for (let i = 1; i < 4; i++) {
+        document.getElementById('line-' + i).style.transform = 'scaleX(0.0)';
+    }
+    for (let i = 4; i < 7; i++) {
+        document.getElementById('line-' + i).style.transform = 'rotate(90deg) scaleX(0.0)';
+    }
+    document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(0.0)';
+    document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(0.0)';
 }
